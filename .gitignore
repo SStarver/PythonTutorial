@@ -1,0 +1,6 @@
+# usage ref url
+# https://zhuanlan.zhihu.com/p/52885189
+.vscode/
+**/__pycache__
+*.swp
+*.temp
