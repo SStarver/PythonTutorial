@@ -1,0 +1,6 @@
+ # 创建容器并在后台运行
+ docker run  -itd   -v /home/guangxia/workspace/docker_home/:/home/local/ --name cgx_tvm d15d58463d24    /bin/bash
+
+# 运行容器
+
+docker exec -it /bin/bash d15d58463d24
