@@ -5,7 +5,7 @@
 class Fram:
     def __init__(self):
         self.bank_width = 32  # unit: nodes, corresponding to 512 bits, or line_width
-        self.bank_depth = 1024
+        self.bank_depth = 512
         self.bank_num = 8
 
 

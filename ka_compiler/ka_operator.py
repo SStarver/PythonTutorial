@@ -28,6 +28,9 @@ class Conv:
         self.bias = bias
         self.dilation = dilation
         self._init_weight_shape(self.store_pattern)
+        self.inp_mb = []
+        self.outp_mb = []
+        self.weight_mb = []
 
     def _init_weight_shape(self, pattern):
         if pattern == "onnx":
@@ -39,7 +42,7 @@ class Conv:
             ]
         elif pattern == "ka":
             self.weight = [
-                self.inp[0],
+                self.inp[1],
                 self.kernel[0],
                 self.kernel[1],
                 (self.outp[1] - 1) * 32 + self.outp[4],
@@ -77,6 +80,7 @@ class Conv:
         self._init_weight_shape("ka")
 
     def _get_remainder(self, a, b):
+        # a - floor(a / b)
         if a % b == 0:
             return b
         return a % b
@@ -91,3 +95,4 @@ class Conv:
         print("@bias:{}".format(self.bias))
         print("@dilation:{}".format(self.dilation))
         print("{} {} -> {}".format(self.inp, self.weight, self.outp))
+        print("mb: {} {} -> {}".format(self.inp_mb, self.weight_mb, self.outp_mb))

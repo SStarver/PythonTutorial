@@ -7,6 +7,7 @@
 > W = 1
 
 > **note**: After split, an output block with (H*W)align8 would be adviced, and maximum hardware efficiency would be meet. However, a block with (H*W) == (3*4) still gains more efficiency than two blocks with shape (2*4) plus (1*4)
+> **Reason**: WRAM needs 8 cycles to load all data needed for one calculation
 
 ## partial sum
 - Ci channel tiling restriction
@@ -22,7 +23,7 @@
 - **Storage Specification**
 > 8 banks per NC  
 > bank width: 512 bits  
-> bank depth: 1024  
+> bank depth: 128  
 > each bank can be read/written at one time  
 
 - **Store pattern: NCHWC32**
@@ -34,7 +35,7 @@
 ## WRAM
 - **Storage Specification**
 > all NC share 2 banks  
-> bank width: 2048 bits  
+> bank width: 2048 bits  (8 times amplifier in hardware)
 > bank depth: 4096  
 > each bank can be read/written at one time  
 
